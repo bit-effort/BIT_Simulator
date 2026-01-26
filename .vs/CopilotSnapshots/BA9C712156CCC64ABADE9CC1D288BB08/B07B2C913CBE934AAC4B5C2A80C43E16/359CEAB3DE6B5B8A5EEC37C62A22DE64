@@ -1,0 +1,37 @@
+﻿using BIT_Simulator.Graphics;
+using Raylib_cs;
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Text;
+
+namespace BIT_Simulator
+{
+    internal class BootSim
+    {
+        public static bool isBooting { get; private set; } = false;
+
+        static Texture2D bootLogo = Raylib.LoadTexture("Data/OS/boot.png");
+        static Texture2D spinner = Raylib.LoadTexture("Data/OS/spinner.png");
+
+        static float rot = 0f;
+
+        public static async void StartBoot(Action? onTaskDone)
+        {
+            isBooting = true;
+            await Task.Delay(99000);
+            isBooting = false;
+            onTaskDone?.Invoke();
+        }
+
+        public static void DrawBoot()
+        {
+            if (!isBooting) return;
+
+            Raylib.DrawTexture(bootLogo, Raylib.GetScreenWidth() / 2 - bootLogo.Width / 2, Raylib.GetScreenHeight() / 2 - 100, Color.White);
+            Raylib.DrawTexturePro(spinner, new Vector2(Raylib.GetScreenWidth() / 2 - spinner.Width / 2, Raylib.GetScreenHeight() / 2 + 175), rot, 1, Color.White);
+
+            rot += 3f;
+        }
+    }
+}

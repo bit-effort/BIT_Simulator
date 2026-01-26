@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BIT_Simulator.SimLog
+{
+    internal class SIMLOG
+    {
+        public static void Info(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.Write($"[INFO] {msg} ");
+            Console.ResetColor();
+            Console.Write("\n");
+        }
+
+        public static void Wanring(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"[WARNING] {msg} ");
+            Console.ResetColor();
+            Console.Write("\n");
+        }
+
+        public static void Error(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.Write($"[ERROR] {msg} ");
+            Console.ResetColor();
+            Console.Write("\n");
+        }
+    }
+}

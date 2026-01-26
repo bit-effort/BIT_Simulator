@@ -1,0 +1,143 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BIT_Simulator.SimLog
+{
+    internal class SIMLOG
+    {
+        private static readonly object _lock = new object();
+        private const int FooterLines = 3;
+        private static readonly string[] _footer = new string[FooterLines] { string.Empty, string.Empty, string.Empty };
+
+        public static void Info(string msg)
+        {
+            WriteLog("[INFO] " + msg, ConsoleColor.White, ConsoleColor.DarkBlue);
+        }
+
+        public static void Wanring(string msg)
+        {
+            // keep old misspelled method for compatibility
+            Warning(msg);
+        }
+
+        public static void Warning(string msg)
+        {
+            WriteLog("[WARNING] " + msg, ConsoleColor.White, ConsoleColor.DarkYellow);
+        }
+
+        public static void Error(string msg)
+        {
+            WriteLog("[ERROR] " + msg, ConsoleColor.White, ConsoleColor.DarkRed);
+        }
+
+        private static void WriteLog(string text, ConsoleColor fg, ConsoleColor bg)
+        {
+            lock (_lock)
+            {
+                EnsureCursorAboveFooter();
+
+                var oldFg = Console.ForegroundColor;
+                var oldBg = Console.BackgroundColor;
+
+                Console.ForegroundColor = fg;
+                Console.BackgroundColor = bg;
+
+                Console.Write(text + " ");
+                Console.ResetColor();
+                Console.WriteLine();
+
+                // redraw footer so it stays visible at the bottom
+                RenderFooter();
+
+                Console.ForegroundColor = oldFg;
+                Console.BackgroundColor = oldBg;
+            }
+        }
+
+        public static void SetFooterLine(int index, string text)
+        {
+            if (index < 0 || index >= FooterLines) throw new ArgumentOutOfRangeException(nameof(index));
+            lock (_lock)
+            {
+                _footer[index] = text ?? string.Empty;
+                RenderFooter();
+            }
+        }
+
+        public static void ClearFooter()
+        {
+            lock (_lock)
+            {
+                for (int i = 0; i < FooterLines; i++) _footer[i] = string.Empty;
+                RenderFooter();
+            }
+        }
+
+        private static void EnsureCursorAboveFooter()
+        {
+            try
+            {
+                int maxLine = Console.WindowHeight - FooterLines;
+                if (maxLine < 1) return;
+
+                if (Console.CursorTop >= maxLine)
+                {
+                    // move cursor to the last allowed line so writes happen above footer
+                    Console.SetCursorPosition(0, Math.Max(0, maxLine - 1));
+                }
+            }
+            catch
+            {
+                // ignore if console properties aren't available
+            }
+        }
+
+        private static void RenderFooter()
+        {
+            try
+            {
+                int width = Console.WindowWidth;
+                int height = Console.WindowHeight;
+                if (width <= 0 || height <= 0) return;
+
+                // save cursor
+                int curLeft = Console.CursorLeft;
+                int curTop = Console.CursorTop;
+
+                for (int i = 0; i < FooterLines; i++)
+                {
+                    int line = height - FooterLines + i;
+                    if (line < 0) continue;
+
+                    Console.SetCursorPosition(0, line);
+
+                    var oldFg = Console.ForegroundColor;
+                    var oldBg = Console.BackgroundColor;
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+
+                    string text = _footer[i] ?? string.Empty;
+                    if (text.Length > width) text = text.Substring(0, width);
+
+                    Console.Write(text.PadRight(width));
+
+                    Console.ForegroundColor = oldFg;
+                    Console.BackgroundColor = oldBg;
+                }
+
+                // restore cursor but ensure it's not inside the footer
+                int maxTop = Math.Max(0, height - FooterLines - 1);
+                if (curTop >= height - FooterLines) curTop = maxTop;
+                if (curLeft >= width) curLeft = 0;
+
+                Console.SetCursorPosition(curLeft, curTop);
+            }
+            catch
+            {
+                // ignore if console properties aren't available
+            }
+        }
+    }
+}
