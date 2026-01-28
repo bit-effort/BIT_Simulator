@@ -43,7 +43,9 @@ namespace BIT_Simulator.Graphics
             {
                 if (File.Exists(imagePath))
                 {
-                    _textureCache[imagePath] = Raylib.LoadTexture(imagePath);
+                    Texture2D tex = Raylib.LoadTexture(imagePath);
+                    Raylib.SetTextureFilter(tex, TextureFilter.Bilinear);
+                    _textureCache[imagePath] = tex;
                     SIMLOG.Info($"Image loaded: {imagePath}");
                 }
                 else
@@ -58,12 +60,13 @@ namespace BIT_Simulator.Graphics
             {
                 Raylib.UnloadTexture(_textureCache[imagePath]);
                 _textureCache.Remove(imagePath);
+
+                SIMLOG.Info($"Image unloaded: {imagePath}");
             }
         }
 
         public void draw_image(string imagePath, int x, int y)
         {
-            // Check if it's already cached
             if (!_textureCache.ContainsKey(imagePath))
             {
                 load_image(imagePath);
@@ -73,6 +76,30 @@ namespace BIT_Simulator.Graphics
             {
                 Raylib.DrawTexture(tex, x, y, Color.White);
             }
+        }
+        public void draw_image_scaled(string imagePath, int x, int y, float width, float height)
+        {
+            if (!_textureCache.ContainsKey(imagePath))
+            {
+                load_image(imagePath);
+            }
+            if (_textureCache.TryGetValue(imagePath, out Texture2D tex))
+            {
+                Raylib.DrawTexturePro(
+                    tex,
+                    new Rectangle(0, 0, tex.Width, tex.Height),
+                    new Rectangle(x, y, width, height),        
+                    new Vector2(0, 0),
+                    0f,
+                    Color.White
+                );
+            }
+        }
+
+        public int get_text_width(string text, int fontSize, string fontFamily)
+        {
+            Vector2 size = Raylib.MeasureTextEx(BitFont.GetFont(fontFamily), text, fontSize, 1);
+            return (int)size.X;
         }
 
         public int get_screen_width()

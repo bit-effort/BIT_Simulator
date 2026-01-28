@@ -22,6 +22,16 @@ namespace BIT_Simulator.Input
         {
             return Raylib.IsMouseButtonPressed((MouseButton)button);
         }
+
+        public bool is_button_down(int button)
+        {
+            return Raylib.IsMouseButtonDown((MouseButton)button);
+        }
+
+        public bool is_button_released(int button)
+        {
+            return Raylib.IsMouseButtonReleased((MouseButton)button);
+        }
     }
 }
     

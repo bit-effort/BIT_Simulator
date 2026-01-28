@@ -12,7 +12,8 @@ namespace BIT_Simulator
         public bool SkipBootScreen = false;
 
         static AppCtx ?appCtx;
-        static string shellPath = "Apps/shell.app/main.lua";
+
+        static string shellPath = "Apps/shell/shell.lua";
 
         Texture2D backgroundImage;
 
@@ -21,6 +22,7 @@ namespace BIT_Simulator
             Raylib.SetTraceLogLevel(TraceLogLevel.Error | TraceLogLevel.Warning | TraceLogLevel.Fatal);
             Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
             Raylib.InitWindow(1280, 720, "BIT Simulator");
+            Raylib.SetExitKey(KeyboardKey.Null);
             Raylib.SetTargetFPS(60);
 
             BitFont.LoadInDefaultSizes();
@@ -43,6 +45,7 @@ namespace BIT_Simulator
             // Load the shell app
             SIMLOG.Info("Loading shell...");
             appCtx.LoadApp(shellPath);
+            appCtx.SetLayer(101, shellPath);
         }
 
         public void Run()
