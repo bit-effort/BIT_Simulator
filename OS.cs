@@ -3,6 +3,7 @@ using BIT_Simulator.SimLog;
 using Raylib_cs;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace BIT_Simulator
@@ -11,7 +12,7 @@ namespace BIT_Simulator
     {
         public bool SkipBootScreen = false;
 
-        static AppCtx ?appCtx;
+        public static AppCtx ?appCtx;
 
         static string shellPath = "Apps/shell/shell.lua";
 
@@ -21,7 +22,7 @@ namespace BIT_Simulator
         {
             Raylib.SetTraceLogLevel(TraceLogLevel.Error | TraceLogLevel.Warning | TraceLogLevel.Fatal);
             Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
-            Raylib.InitWindow(1280, 720, "BIT Simulator");
+            Raylib.InitWindow(1920, 1080, "BIT Simulator");
             Raylib.SetExitKey(KeyboardKey.Null);
             Raylib.SetTargetFPS(60);
 
@@ -45,7 +46,8 @@ namespace BIT_Simulator
             // Load the shell app
             SIMLOG.Info("Loading shell...");
             appCtx.LoadApp(shellPath);
-            appCtx.SetLayer(101, shellPath);
+
+            appCtx.SetAppLayer(shellPath, 101);
         }
 
         public void Run()
@@ -57,7 +59,7 @@ namespace BIT_Simulator
 
                 if (!BootSim.isBooting)
                 {
-                    Raylib.DrawTexture(backgroundImage, 0, 0, Color.White);
+                    Raylib.DrawTexturePro(backgroundImage, new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, Raylib.GetScreenWidth(), Raylib.GetScreenHeight()), new Vector2(0, 0), 0, Color.White);
                     appCtx?.UpdateApps();
                 }
 
@@ -69,12 +71,11 @@ namespace BIT_Simulator
             Raylib.CloseWindow();
         }
 
-        internal static async void ReloadShell()
+        internal static void ReloadShell()
         {
             SIMLOG.Info("Reloading shell...");
 
             appCtx?.UnloadApp(shellPath);
-            await Task.Delay(100);
             appCtx?.LoadApp(shellPath);
         }
     }

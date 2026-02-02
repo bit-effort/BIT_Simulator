@@ -22,7 +22,11 @@ namespace BIT_Simulator
     internal class AppCtx
     {
         private static List<AppInstance> appInstances = new List<AppInstance>();
+        private static List<string> appsToRemove = new List<string>();
 
+        private List<DynValue> signalListeners = new List<DynValue>();
+
+        [MoonSharpHidden]
         public void Init()
         {
             UserData.RegisterType<BitGraphics>();
@@ -111,7 +115,6 @@ namespace BIT_Simulator
             // Sort so Layer 0 is first, Layer 99 is last
             appInstances.Sort((a, b) => a.Layer.CompareTo(b.Layer));
 
-            // Run from 0 to Count-1 so highest layer is the LAST to resume/draw
             for (int i = 0; i < appInstances.Count; i++)
             {
                 Coroutine co = appInstances[i].Co;
@@ -134,18 +137,40 @@ namespace BIT_Simulator
                     i--;
                 }
             }
+
+            // Process deferred removals after all apps have been updated
+            ProcessDeferredRemovals();
+        }
+
+        [MoonSharpHidden]
+        private void ProcessDeferredRemovals()
+        {
+            if (appsToRemove.Count == 0)
+                return;
+
+            foreach (string appPath in appsToRemove)
+            {
+                string target = Normalize(appPath);
+                for (int i = appInstances.Count - 1; i >= 0; i--)
+                {
+                    if (Normalize(appInstances[i].Path) == target)
+                    {
+                        appInstances.RemoveAt(i);
+                        SIMLOG.Info($"Unloaded app: {target}");
+                    }
+                }
+            }
+
+            appsToRemove.Clear();
         }
 
         public void UnloadApp(string appPath)
         {
             string target = Normalize(appPath);
-            for (int i = appInstances.Count - 1; i >= 0; i--)
+
+            if (!appsToRemove.Contains(target))
             {
-                if (Normalize(appInstances[i].Path) == target)
-                {
-                    appInstances.RemoveAt(i);
-                    SIMLOG.Info($"Unloaded app: {target}");
-                }
+                appsToRemove.Add(target);
             }
         }
 
@@ -159,45 +184,49 @@ namespace BIT_Simulator
             return loadedApps.ToArray();
         }
 
-        public void SetLayer(int layer, string ctxPath)
+        public void SetAppLayer(string appPath, int layer)
         {
-            string target = Normalize(ctxPath);
-            foreach (var app in appInstances)
+            string target = Normalize(appPath);
+            var app = appInstances.Find(a => Normalize(a.Path) == target);
+            if (app != null)
             {
-                if (Normalize(app.Path) == target)
-                {
-                    app.Layer = layer;
-                    break;
-                }
+                app.Layer = layer;
+                SIMLOG.Info($"Set layer of {target} to {layer}");
+            }
+            else
+            {
+                SIMLOG.Error($"SetAppLayer failed: App not found - {target}");
             }
         }
 
-        public void BringToFront(string ctxPath)
+        public void ConnectSignalListener(DynValue callback)
         {
-            string target = Normalize(ctxPath);
-            int maxLayer = 0;
-
-            // Find current highest layer
-            foreach (var app in appInstances)
+            if (callback.Type == DataType.Function)
             {
-                if (app.Layer > maxLayer) maxLayer = app.Layer;
+                signalListeners.Add(callback);
+                SIMLOG.Info("New signal listener connected.");
             }
-
-            int nextLayer = Math.Clamp(maxLayer + 1, 0, 99);
-            SetLayer(nextLayer, target);
+            else
+            {
+                SIMLOG.Error("Connect failed: Argument must be a function.");
+            }
         }
 
-        public int GetLayer(string ctxPath)
+        public void EmitSignal(string signalName, string data)
         {
-            string target = Normalize(ctxPath);
-            foreach (var app in appInstances)
+            for (int i = signalListeners.Count - 1; i >= 0; i--)
             {
-                if (Normalize(app.Path) == target)
+                var listener = signalListeners[i];
+                try
                 {
-                    return app.Layer;
+                    listener.Function.Call(signalName, data);
+                }
+                catch (Exception ex)
+                {
+                    SIMLOG.Error($"Signal Error: {ex.Message}");
+                    signalListeners.RemoveAt(i); 
                 }
             }
-            return -1;
         }
     }
 }

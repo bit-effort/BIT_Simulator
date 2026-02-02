@@ -102,6 +102,15 @@ namespace BIT_Simulator.Graphics
             return (int)size.X;
         }
 
+        public void begin_clip(int x, int y, int width, int height)
+        {
+            Raylib.BeginScissorMode(x, y, width, height);
+        }
+        public void end_clip()
+        {
+            Raylib.EndScissorMode();
+        }
+
         public int get_screen_width()
         {
             return Raylib.GetScreenWidth();

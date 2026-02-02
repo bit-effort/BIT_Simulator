@@ -32,6 +32,11 @@ namespace BIT_Simulator.Input
         {
             return Raylib.IsMouseButtonReleased((MouseButton)button);
         }
+
+        public int get_wheel_move()
+        {
+            return (int)Raylib.GetMouseWheelMove();
+        }
     }
 }
     
