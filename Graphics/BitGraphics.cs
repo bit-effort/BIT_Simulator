@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BIT_Simulator.Graphics
 {
@@ -51,6 +52,9 @@ namespace BIT_Simulator.Graphics
                 else
                 {
                     SIMLOG.Warning($"Image not found: {imagePath}");
+
+                    Texture2D placeholder = Raylib.LoadTexture("Data/OS/icons/placeholder.png");
+                    _textureCache[imagePath] = placeholder;
                 }
             }
         }

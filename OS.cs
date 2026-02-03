@@ -33,6 +33,8 @@ namespace BIT_Simulator
 
             appCtx = new AppCtx();
             appCtx.Init();
+
+            SIMLOG.InitializeSignals(appCtx);
         }
 
         void LoadShell()
@@ -64,6 +66,8 @@ namespace BIT_Simulator
                 }
 
                 BootSim.DrawBoot();
+
+                Raylib.DrawFPS(10, 40);
 
                 Raylib.EndDrawing();
             }

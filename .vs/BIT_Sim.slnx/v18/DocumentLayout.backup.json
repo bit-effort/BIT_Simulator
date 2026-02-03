@@ -7,28 +7,16 @@
       "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:appcontext\\appctx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\simlog\\simlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:simlog\\simlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\simlog\\simlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:simlog\\simlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\graphics\\bitgraphics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:graphics\\bitgraphics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\input\\bitmouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:input\\bitmouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\input\\bitkeyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:input\\bitkeyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\timeout\\bittimeout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:timeout\\bittimeout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\filesystem\\bitfilesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,6 +25,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\clock\\bitclock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:clock\\bitclock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\graphics\\bitgraphics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:graphics\\bitgraphics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\input\\bitmouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:input\\bitmouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\input\\bitkeyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|solutionrelative:input\\bitkeyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2CEFAFD8-E8FA-03EA-F638-E64531018159}|BIT_Simulator.csproj|e:\\bit\\bit_simulator\\graphics\\bitfont.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,23 +58,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "BitTimeout.cs",
+              "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Timeout\\BitTimeout.cs",
+              "RelativeDocumentMoniker": "Timeout\\BitTimeout.cs",
+              "ToolTip": "E:\\BIT\\BIT_Simulator\\Timeout\\BitTimeout.cs",
+              "RelativeToolTip": "Timeout\\BitTimeout.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA3wCgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T21:06:57.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "BitFileSystem.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\FileSystem\\BitFileSystem.cs",
               "RelativeDocumentMoniker": "FileSystem\\BitFileSystem.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\FileSystem\\BitFileSystem.cs",
               "RelativeToolTip": "FileSystem\\BitFileSystem.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwCsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T14:12:13.894Z"
+              "WhenOpened": "2026-01-27T14:12:13.894Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "BitKeyboard.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Input\\BitKeyboard.cs",
               "RelativeDocumentMoniker": "Input\\BitKeyboard.cs",
@@ -82,19 +100,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "BitClock.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Clock\\BitClock.cs",
               "RelativeDocumentMoniker": "Clock\\BitClock.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\Clock\\BitClock.cs",
               "RelativeToolTip": "Clock\\BitClock.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwBYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T21:03:27.073Z"
+              "WhenOpened": "2026-01-26T21:03:27.073Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "BitMouse.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Input\\BitMouse.cs",
               "RelativeDocumentMoniker": "Input\\BitMouse.cs",
@@ -107,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "BitFont.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Graphics\\BitFont.cs",
               "RelativeDocumentMoniker": "Graphics\\BitFont.cs",
@@ -119,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "BootSim.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\BootSim.cs",
               "RelativeDocumentMoniker": "BootSim.cs",
@@ -131,26 +150,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "OS.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\OS.cs",
               "RelativeDocumentMoniker": "OS.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\OS.cs",
               "RelativeToolTip": "OS.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAcwFIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowEgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T14:33:30.821Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SIMLOG.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\SimLog\\SIMLOG.cs",
               "RelativeDocumentMoniker": "SimLog\\SIMLOG.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\SimLog\\SIMLOG.cs",
               "RelativeToolTip": "SimLog\\SIMLOG.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowCgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAewCIAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T14:49:38.687Z",
               "EditorCaption": ""
@@ -163,27 +182,27 @@
               "RelativeDocumentMoniker": "AppContext\\AppCtx.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\AppContext\\AppCtx.cs",
               "RelativeToolTip": "AppContext\\AppCtx.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAwwKAAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAgwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T14:37:30.493Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "BitGraphics.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Graphics\\BitGraphics.cs",
               "RelativeDocumentMoniker": "Graphics\\BitGraphics.cs",
               "ToolTip": "E:\\BIT\\BIT_Simulator\\Graphics\\BitGraphics.cs",
               "RelativeToolTip": "Graphics\\BitGraphics.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAAwFoAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAgwIMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T14:35:00.286Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\BIT\\BIT_Simulator\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

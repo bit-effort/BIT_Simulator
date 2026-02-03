@@ -3,6 +3,7 @@ using BIT_Simulator.FileSystem;
 using BIT_Simulator.Graphics;
 using BIT_Simulator.Input;
 using BIT_Simulator.SimLog;
+using BIT_Simulator.Timeout;
 using MoonSharp.Interpreter;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,14 @@ namespace BIT_Simulator
 
         private List<DynValue> signalListeners = new List<DynValue>();
 
+        private BitGraphics bitGraphics = new BitGraphics();
+        private BitMouse bitMouse = new BitMouse();
+        private BitKeyboard bitKeyboard = new BitKeyboard();
+        private BitClock bitClock = new BitClock();
+        private BitFileSystem bitFileSystem = new BitFileSystem();
+        private BitTimeout bitTimeout = new BitTimeout();
+
+
         [MoonSharpHidden]
         public void Init()
         {
@@ -35,6 +44,7 @@ namespace BIT_Simulator
             UserData.RegisterType<BitClock>();
             UserData.RegisterType<BitFileSystem>();
             UserData.RegisterType<AppCtx>();
+            UserData.RegisterType<BitTimeout>();
 
             Script.DefaultOptions.DebugPrint = s => SIMLOG.Info("[FROM APP] " + s);
         }
@@ -78,11 +88,12 @@ namespace BIT_Simulator
                 string code = File.ReadAllText(normalizedPath);
                 Script script = new Script();
 
-                script.Globals["bit_graphics"] = new BitGraphics();
-                script.Globals["bit_mouse"] = new BitMouse();
-                script.Globals["bit_keyboard"] = new BitKeyboard();
-                script.Globals["bit_clock"] = new BitClock();
-                script.Globals["bit_filesystem"] = new BitFileSystem();
+                script.Globals["bit_graphics"] = bitGraphics;
+                script.Globals["bit_mouse"] = bitMouse;
+                script.Globals["bit_keyboard"] = bitKeyboard;
+                script.Globals["bit_clock"] = bitClock;
+                script.Globals["bit_filesystem"] = bitFileSystem;
+                script.Globals["bit_timeout"] = bitTimeout;
 
                 // Ensure __APP_FOLDER is also normalized for the Lua side
                 string folder = Path.GetDirectoryName(normalizedPath);
@@ -102,6 +113,8 @@ namespace BIT_Simulator
 
                 appInstances.Add(instance);
                 SIMLOG.Info($"Loaded app: {appName} ({normalizedPath})");
+
+                EmitSignal("__system_app_load_requested", appPath);
             }
             catch (Exception ex)
             {
@@ -140,6 +153,8 @@ namespace BIT_Simulator
 
             // Process deferred removals after all apps have been updated
             ProcessDeferredRemovals();
+
+            bitTimeout.Update();
         }
 
         [MoonSharpHidden]
@@ -171,6 +186,7 @@ namespace BIT_Simulator
             if (!appsToRemove.Contains(target))
             {
                 appsToRemove.Add(target);
+                EmitSignal("__system_app_unload_requested", target);
             }
         }
 
@@ -211,20 +227,53 @@ namespace BIT_Simulator
                 SIMLOG.Error("Connect failed: Argument must be a function.");
             }
         }
+        public void ConnectSignalListenerBackend(Action<string, DynValue> callback)
+        {
+            var dynCallback = DynValue.NewCallback((context, args) =>
+            {
+                if (args.Count >= 2)
+                {
+                    callback(args[0].String, args[1]);
+                }
+                else if (args.Count == 1)
+                {
+                    callback(args[0].String, DynValue.Nil);
+                }
+
+                return DynValue.Nil;
+            });
+
+            signalListeners.Add(dynCallback);
+            SIMLOG.Info("New backend signal listener connected.");
+        }
 
         public void EmitSignal(string signalName, string data)
         {
             for (int i = signalListeners.Count - 1; i >= 0; i--)
             {
                 var listener = signalListeners[i];
+                if (listener == null) continue;
+
                 try
                 {
-                    listener.Function.Call(signalName, data);
+                    // If it's a native Lua function
+                    if (listener.Type == DataType.Function)
+                    {
+                        listener.Function.Call(signalName, data);
+                    }
+                    // If it's a C# callback created via NewCallback
+                    else if (listener.Type == DataType.ClrFunction)
+                    {
+                        listener.Callback.Invoke(null, new DynValue[] {
+                            DynValue.NewString(signalName),
+                            DynValue.NewString(data)
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
                     SIMLOG.Error($"Signal Error: {ex.Message}");
-                    signalListeners.RemoveAt(i); 
+                    signalListeners.RemoveAt(i);
                 }
             }
         }

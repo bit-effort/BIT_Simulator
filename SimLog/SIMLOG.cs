@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using MoonSharp.Interpreter;
+using Raylib_cs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,20 +25,29 @@ namespace BIT_Simulator.SimLog
         private static readonly List<LogLine> logLines = new List<LogLine>();
         private static readonly string logFilePath = "simulator.log";
 
-        private static int LogAreaHeight => Console.WindowHeight - 3;
-
         static SIMLOG()
         {
             File.WriteAllText(logFilePath, "");
+        }
+
+        public static void InitializeSignals(AppCtx context)
+        {
+            context.ConnectSignalListenerBackend((name, data) =>
+            {
+                if (name == "__system-log-request-full")
+                {
+                    string fullLog = string.Join("\n", logLines.ConvertAll(line => line.Text));
+                    context.EmitSignal("__system-log-recieved-full", fullLog);
+                }
+            });
+
+            SIMLOG.Info("SIMLOG Signal Listener Attached.");
         }
 
         private static void AddLog(string text, ConsoleColor fg, ConsoleColor bg)
         {
             logLines.Add(new LogLine(text, fg, bg));
             SaveLog(text);
-
-            while (logLines.Count > LogAreaHeight)
-                logLines.RemoveAt(0);
 
             OS.appCtx?.EmitSignal("__system-log-recieved", text);
         }

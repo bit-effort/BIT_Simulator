@@ -33,6 +33,14 @@ namespace BIT_Simulator.FileSystem
             File.Delete(path);
         }
 
+        public void delete_directory(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
+        }
+
         public string[] list_directory(string path)
         {
             if (Directory.Exists(path))
